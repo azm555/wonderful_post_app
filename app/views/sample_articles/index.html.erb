@@ -18,7 +18,7 @@
         <td><%= sample_article.content %></td>
         <td><%= link_to 'Show', sample_article %></td>
         <td><%= link_to 'Edit', edit_sample_article_path(sample_article) %></td>
-        <td><%= link_to 'Destroy', sample_article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to "Destroy", sample_article, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
