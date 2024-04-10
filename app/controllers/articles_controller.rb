@@ -18,40 +18,28 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
-    respond_to do |format|
       if @article.save
-        format.html { redirect_to article_url(@article), notice: "article was successfully created." }
-        format.json { render :show, status: :created, location: @article }
+        redirect_to article_url(@article), notice: "article was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
-    end
   end
 
   def update
     @article = Article.find(params[:id])
 
-    respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to article_url(@article), notice: "article was successfully updated." }
-        format.json { render :show, status: :ok, location: @article }
+        redirect_to article_url(@article), notice: "article was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
-    end
   end
 
   def destroy
     @article = Article.find(params[:id])
 
     @article.destroy
-
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "article was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to articles_url, notice: "article was successfully destroyed."
   end
 
   private
