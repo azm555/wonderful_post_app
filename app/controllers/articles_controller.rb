@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
       if @article.save
-        redirect_to article_url(@article), notice: "article was successfully created."
+        redirect_to article_url(@article), notice: "#{t('activerecord.models.article')}が作成されました。"
       else
         render :new, status: :unprocessable_entity
       end
@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
       if @article.update(article_params)
-        redirect_to article_url(@article), notice: "article was successfully updated."
+        redirect_to article_url(@article), notice: "#{t('activerecord.models.article')}が更新されました。"
       else
         render :edit, status: :unprocessable_entity
       end
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     @article.destroy
-    redirect_to articles_url, notice: "article was successfully destroyed."
+    redirect_to articles_url, notice: "#{t('activerecord.models.article')}が削除されました。"
   end
 
   private
