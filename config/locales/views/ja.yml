@@ -1,0 +1,11 @@
+ja:
+  common:
+    Articles: '記事'
+    Title: 'タイトル'
+    Content: '本文'
+    Show: '詳細'
+    Back: '戻る'
+    Edit: '編集'
+    Destroy: '削除'
+    New Article: '記事作成'
+    Editing Article: '記事編集'
