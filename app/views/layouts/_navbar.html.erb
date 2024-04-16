@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container-fluid">
+    <% if user_signed_in? %>
+     <%= link_to 'TOP', root_path %>
+    <% end %>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+
+          <% if user_signed_in? %>
+          <% else %>
+           <li class="nav-item">
+             <%= button_to "サインアップ" , new_user_registration_path, method: :get %>
+           </li>
+          <% end %>
+
+          <% if user_signed_in? %>
+          <% else %>
+           <li class="nav-item">
+            <%= button_to "ログイン" , user_session_path, method: :post %>
+           </li>
+          <% end %>
+
+          <% if user_signed_in? %>
+           <li class="nav-item">
+            <%= button_to "ログアウト" , destroy_user_session_path, method: :delete %>
+           </li>
+          <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
