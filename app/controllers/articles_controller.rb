@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+   skip_before_action :authenticate_user!, only: %i[ index show ]
+   before_action :set_article, only: %i[ edit update destroy ]
+
   def index
     @articles = Article.all
   end
@@ -12,11 +15,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
 
       if @article.save
         redirect_to article_url(@article), notice: "#{t('activerecord.models.article')}が作成されました。"
@@ -26,8 +28,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
-
       if @article.update(article_params)
         redirect_to article_url(@article), notice: "#{t('activerecord.models.article')}が更新されました。"
       else
@@ -36,13 +36,15 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
-
     @article.destroy
     redirect_to articles_url, notice: "#{t('activerecord.models.article')}が削除されました。"
   end
 
   private
+    def set_article
+      @article = current_user.Article.find(params[:id])
+    end
+
     def article_params
       params.require(:article).permit(:title, :content)
     end
