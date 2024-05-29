@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-   skip_before_action :authenticate_user!, only: %i[ index show ]
+  #  skip_before_action :authenticate_user!, only: %i[ index show ]
    before_action :set_article, only: %i[ edit update destroy ]
 
   def index
@@ -15,6 +15,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    # if current_user == @article.user
+      # render :edit
+      # redirect_to articles_path
+    # end
   end
 
   def create
@@ -42,7 +46,7 @@ class ArticlesController < ApplicationController
 
   private
     def set_article
-      @article = current_user.Article.find(params[:id])
+      @article = current_user.articles.find(params[:id])
     end
 
     def article_params
