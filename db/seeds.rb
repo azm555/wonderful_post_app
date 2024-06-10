@@ -41,7 +41,7 @@ number_of_users.times do |n|
     u.password = password
   end
 
-  number_of_articles = 3
+  number_of_articles = 50
   number_of_articles.times do |i|
     article_number = i + 1
     title = "No.#{article_number}: user#{format('%03d', user_number)}の記事"
