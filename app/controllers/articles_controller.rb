@@ -3,7 +3,12 @@ class ArticlesController < ApplicationController
    before_action :set_article, only: %i[ edit update destroy ]
 
   def index
-    @articles = Article.all.page(params[:page])
+    if params[:title].present? # 検索フォームに入力された情報が存在するか判断
+      # SQLのLIKE句を使ったあいまい検索の構文
+      @articles = Article.where('title LIKE ?', "%#{params[:title]}%").page(params[:page])
+    else # 検索フォームに何も入力されていない場合は記事一覧表示とする
+      @articles = Article.all.page(params[:page])
+    end
   end
 
   def show
