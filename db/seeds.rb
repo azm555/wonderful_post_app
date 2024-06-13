@@ -47,8 +47,13 @@ number_of_users.times do |n|
     title = "No.#{article_number}: user#{format('%03d', user_number)}の記事"
     content = "No.#{article_number}: user#{format('%03d', user_number)}の記事の本文"
 
-    Article.find_or_create_by!(user: user, title: title) do |article|
-      article.content = content
+    article = Article.find_or_create_by!(user: user, title: title) do |a|
+      a.content = content
     end
+
+    all_tags = Tag.all
+    article.tags = all_tags
+    # Tagモデルのすべてのタグ情報が、記事情報に関連付けられたタグ情報（article.tags）と一致する」＝seedファイルから生成された記事が全てのタグを持つ
+
   end
 end
