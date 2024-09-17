@@ -16,8 +16,8 @@
   - 下書き記事投稿
 - マイページ機能
 - テストコード実装(RSpec)
-- rubocopの導入
-- GitHub Actionsの導入
+- CIの導入(GitHub Actions)
+  - Githubへpush時、Rspec及びRubocopが自動で実行
 
 # ドキュメント
 作業内容の確認や自身の考えていることの言語化を目的に、
